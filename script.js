@@ -1,19 +1,3 @@
-
-// RULES
-
-
-// Scissors cuts paper.
-// Paper covers rock.
-// Rock crushes lizard.
-// Lizard poisons Spock.
-// Spock smashes scissors.
-// Scissors decapitates lizard.
-// Lizard eats paper.
-// Paper disproves Spock.
-// Spock vaporizes rock.
-// Rock crushes scissors.
-
-
 //Loading up our images
 const rockImg = new Image();
 rockImg.src = 'rock.png';
@@ -27,19 +11,23 @@ scissorsImg.src = 'scissors.png';
 //Putting our images in an array
 const images = [rockImg, paperImg, scissorsImg];
 
+
+//function to generate the computer's choice
 function makeTheComputersChoice() {
   //create a function that returns a random number between 1-3
    let temp = Math.floor((Math.random()*3)+1);
    return temp;
 }
+// log the computer's choice to the console
+// console.log(`COMPUTER CHOICE: ${makeTheComputersChoice()}`);
 
-console.log(makeTheComputersChoice());
-
+// function to select and load the user's choice
 function checkResult(userChoice){
 
+// store the computer's choice in a variable
 let compChoice = makeTheComputersChoice();
 
-
+  // evaluate and compare the user's choice to computer's choice
   //the User Wins
   if((userChoice == 1 && compChoice == 3) || (userChoice == 2 && compChoice == 1) || (userChoice == 3 && compChoice == 2)) {
    $(".result").text("You Win!");
@@ -55,7 +43,9 @@ let compChoice = makeTheComputersChoice();
   }
   
 //let’s test it out 
-  console.log(userChoice, compChoice);
+  console.log(`Did you win?`);
+  console.log(`Remember that ROCK=1, PAPER=2, SCISSOR=3\n`);
+  console.log(`USER CHOICE: ${userChoice}\nCOMPUTER CHOICE: ${compChoice}\n\n`);
    displayChoices(userChoice, compChoice);
 }
 
@@ -63,8 +53,10 @@ let compChoice = makeTheComputersChoice();
 
 function displayChoices(userChoice,computerChoice){
  $('#playerChoice').attr('src',((images[userChoice - 1]).src));
+  $('#playerChoice').addClass('img-fluid');
 
   $('#computerChoice').attr('src',((images[computerChoice - 1]).src));
+  $('#computerChoice').addClass('img-fluid');
 }
 
 
